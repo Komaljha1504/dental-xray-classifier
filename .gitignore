@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Data lives outside the repo (see src/config.py); never commit images
+data/
+*.jpg
+*.jpeg
+!docs/*.jpg
+!results/*.jpg
+*.npy
+
+# Local
+.env
+.DS_Store
+
+# working logs
+results/chain2_log.txt
+results/*_stdout_*.txt
+results/eda_log.txt
+!examples/*.jpg
+results/app_stdout.txt

@@ -1,0 +1,54 @@
+{
+  "full_dataset": {
+    "caries": 5831,
+    "no_caries": 4097
+  },
+  "balanced_subset": {
+    "caries": 2500,
+    "no_caries": 2500
+  },
+  "images_with_zero_annotations": 0,
+  "full_caries_share": 0.587,
+  "by_source": [
+    {
+      "source": "dentex",
+      "images": 678,
+      "caries": 650,
+      "caries_share": 0.959
+    },
+    {
+      "source": "oralxrays9",
+      "images": 9250,
+      "caries": 5181,
+      "caries_share": 0.56
+    }
+  ],
+  "decision": "DENTEX images excluded: 96% caries vs 56% elsewhere would create a source shortcut.",
+  "images_per_finding": {
+    "caries": 5831,
+    "periapical lesion": 3106,
+    "impacted tooth": 8122
+  },
+  "image_width": {
+    "count": 5000.0,
+    "mean": 1991.0,
+    "std": 0.0,
+    "min": 1991.0,
+    "25%": 1991.0,
+    "50%": 1991.0,
+    "75%": 1991.0,
+    "max": 1991.0
+  },
+  "image_height": {
+    "count": 5000.0,
+    "mean": 1127.0,
+    "std": 0.0,
+    "min": 1127.0,
+    "25%": 1127.0,
+    "50%": 1127.0,
+    "75%": 1127.0,
+    "max": 1127.0
+  },
+  "aspect_ratio_mean": 1.77,
+  "distinct_sizes": 1
+}
