@@ -2,7 +2,7 @@
 
 Deep-learning classifier that looks at a **panoramic dental X-ray** and estimates whether it shows **caries (cavities)**, with **Grad-CAM heatmaps** that show which regions drove each prediction. Built with PyTorch transfer learning (ImageNet ResNet-18), evaluated on a held-out test set with confidence intervals.
 
-**Live demo:** _added after deployment_
+**Live demo:** [komal-dental-xray.streamlit.app](https://komal-dental-xray.streamlit.app) (Streamlit Community Cloud; if it was idle it may take about a minute to wake up)
 
 > **Educational project. Not a medical device and not for diagnosis.** Results are modest (see below) and the model has only ever seen X-rays that contain at least one finding.
 
@@ -101,6 +101,7 @@ python src/train.py --tag square    # ~35 min on an 8-core CPU
 python src/evaluate.py --tag square # metrics_square.json + figures
 python src/explain.py --tag square  # Grad-CAM figure
 python src/app.py                   # Gradio demo at http://127.0.0.1:7860
+streamlit run demo/streamlit_app.py # the hosted (Streamlit) version
 ```
 
 Data is stored outside the repo (`~/ml-data/dental`, override with `DENTAL_DATA_DIR`). The trained weights `models/resnet18_square.pt` (43 MB) are included, so you can run the demo without training.
