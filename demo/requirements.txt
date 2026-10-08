@@ -1,0 +1,7 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+torchvision
+streamlit>=1.40
+numpy
+pillow
+opencv-python-headless
