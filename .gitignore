@@ -22,3 +22,4 @@ results/*_stdout_*.txt
 results/eda_log.txt
 !examples/*.jpg
 results/app_stdout.txt
+models/resnet18_wide.pt

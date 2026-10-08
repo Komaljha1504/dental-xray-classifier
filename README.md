@@ -33,6 +33,18 @@ The two left columns are correct caries calls, then a correct no-caries call, th
 
 ![Grad-CAM examples](results/gradcam_square.png)
 
+
+### Experiment: does keeping the aspect ratio help?
+
+I suspected that squashing a 1.77:1 panorama into a square was hurting. I retrained the same model on 224×448 inputs (same split, same settings) and evaluated on the same 750 test images:
+
+| Input | ROC-AUC (95% CI) | Accuracy (95% CI) |
+|---|---|---|
+| 224×224 (used in the demo) | **0.738** (0.700 – 0.773) | 65.9% (62.5 – 69.1) |
+| 224×448 (aspect ratio kept) | 0.692 (0.650 – 0.731) | 64.7% (61.2 – 68.1) |
+
+The wider input was **not** better (the intervals overlap but the point estimate is lower), so my hypothesis was not supported and I kept the 224×224 model. Higher resolution on a crop of the teeth, or a stronger model, are the next things I would try. Figures: `results/evaluation_wide.png`, `results/gradcam_wide.png`.
+
 ## Data
 
 **Source:** [`liodon-ai/dental-panoramic-xray-yolo`](https://huggingface.co/datasets/liodon-ai/dental-panoramic-xray-yolo) on Hugging Face (CC BY-NC 4.0), which combines [DENTEX](https://huggingface.co/datasets/ibrahimhamamci/DENTEX) and OralXrays-9 (CVPR 2025). It is an **object-detection** dataset: bounding boxes for three findings (caries, periapical lesion, impacted tooth). I turn those boxes into an **image-level classification** task. Public, no login needed.
@@ -63,7 +75,7 @@ Training accuracy keeps rising while validation stalls after epoch 4, a normal o
 
 ## Limitations
 
-- **Resolution and aspect ratio.** Panoramas are 1.77:1; squashing to a square distorts the anatomy and discards fine detail. This is the most likely cap on performance.
+- **Resolution.** Panoramas are 1.77:1 and 1991×1127 pixels; shrinking to 224×224 discards fine detail. I tested the aspect-ratio idea (see the experiment below) and it did **not** help, so the cap is more likely the small input resolution or the label noise than the squashing.
 - **Weak labels.** Labels are derived from bounding boxes by other annotators. I did not validate them clinically, so label noise is possible.
 - **No patient identifiers.** The dataset gives none, so I cannot guarantee that the same patient is not in both train and test. Scores may be slightly optimistic.
 - **Only diseased mouths.** The model has never seen a healthy X-ray, so it must not be read as "healthy vs sick".
